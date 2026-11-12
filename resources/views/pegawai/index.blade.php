@@ -1,7 +1,7 @@
 <x-app>
     <x-slot:title>{{ $title }}</x-slot:title>
 
-    <a class="btn" href="/pegawai/create" role="button"
+    <a class="btn" href="{{ route("pegawai.create") }}" role="button"
         style="background-color: #A86B08; border-color: #A86B08; color: white;">
         Add
     </a>

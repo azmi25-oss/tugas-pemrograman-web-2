@@ -9,3 +9,4 @@ Route::resource('pegawai', PegawaiController::class);
 
 Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
 Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegawai.create');
+Route::post('/pegawai/store', [PegawaiController::class, 'store'])->name('pegawai.store');

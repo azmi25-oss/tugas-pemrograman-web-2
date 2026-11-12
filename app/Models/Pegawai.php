@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable(['nip', 'nama', 'jabatan', 'golongan', 'unit_kerja'])]
+#[Fillable(['name','nip','jabatan', 'golongan', 'unit'])]
 class Pegawai extends Model
 {
     use HasFactory;

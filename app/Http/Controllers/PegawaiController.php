@@ -11,22 +11,21 @@ class PegawaiController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-    
-
-        return view('pegawai.index', [
-            'title' => 'Employee Data Page',
-            'pegawai' => Pegawai::all(),
-
-        ]);
-    }
+{
+    return view('pegawai.index', [
+        'title' => 'Employee Data Page',
+        'pegawai' => Pegawai::latest()->get(),
+    ]);
+}
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('pegawai.create', ['title' => 'Employee Data Addition Page']);
+        return view('pegawai.create', [
+            'title' => 'Employee Data Addition Page'
+        ]);
     }
 
     /**
@@ -34,7 +33,25 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'nip' => 'required|numeric|digits:12',
+            'jabatan' => 'required',
+            'golongan' => 'required',
+            'unit' => 'required',
+        ], [
+            'name.required' => 'Nama Wajib Di Input',
+            'nip.required' => 'NIP Wajib Di Input',
+            'nip.numeric' => 'NIP Wajib Berupa Angka',
+            'nip.digits' => 'NIP Wajib 12 Digit',
+            'jabatan.required' => 'Jabatan Wajib Dipilih',
+            'golongan.required' => 'Golongan Wajib Dipilih',
+            'unit.required' => 'Unit Wajib Dipilih',
+        ]);
+
+        pegawai::create($validated);
+
+        return redirect()->route('pegawai.index');
     }
 
     /**
