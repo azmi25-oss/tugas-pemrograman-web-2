@@ -107,8 +107,11 @@ class PegawaiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Pegawai $pegawai)
     {
-        //
+        $pegawai->delete();
+
+        return to_route('pegawai.index')
+            ->with('succes', 'Data Berhasil Dihapus');
     }
 }

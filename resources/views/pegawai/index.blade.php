@@ -62,7 +62,7 @@
         }
 
         .table-chocolate th:nth-child(4) {
-            width: 18%;
+            width: 16%;
         }
 
         .table-chocolate th:nth-child(5) {
@@ -70,11 +70,20 @@
         }
 
         .table-chocolate th:nth-child(6) {
-            width: 22%;
+            width: 19%;
         }
 
         .table-chocolate th:nth-child(7) {
-            width: 10%;
+            width: 15%;
+        }
+
+        /* Membuat tombol Edit dan Delete bersampingan */
+        .table-chocolate tbody td:last-child {
+            white-space: nowrap;
+        }
+
+        .table-chocolate .btn {
+            margin-bottom: 0;
         }
     </style>
 
@@ -105,11 +114,25 @@
                     <td>{{ $p->jabatan }}</td>
                     <td>{{ $p->golongan }}</td>
                     <td>{{ $p->unit }}</td>
+
                     <td>
-                        <a class="btn btn-warning" href="{{ route('pegawai.edit', $p->id) }}" role="button"
-                            style="background-color: #A86B08; border-color: #A86B08; color: white;">
-                            Edit
-                        </a>
+                        <div class="d-flex align-items-center gap-1">
+                            <a class="btn btn-warning" href="{{ route('pegawai.edit', $p->id) }}" role="button"
+                                style="background-color: #A86B08; border-color: #A86B08; color: white;">
+                                Edit
+                            </a>
+
+                            <form method="POST" action="{{ route('pegawai.destroy', $p) }}">
+                                @csrf
+                                @method('delete')
+
+                                <button type="submit" class="btn btn-primary"
+                                    style="background-color: #A86B08; border-color: #A86B08; color: white;"
+                                    onclick="return confirm('Yakin ingin menghapus data pegawai ini?')">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

@@ -12,3 +12,4 @@ Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegaw
 Route::post('/pegawai/store', [PegawaiController::class, 'store'])->name('pegawai.store');
 Route::get('/pegawai/edit', [PegawaiController::class, 'edit'])->name('pegawai.edit');
 Route::get('/pegawai/update', [PegawaiController::class, 'update'])->name('pegawai.update');
+Route::delete('/pegawai/destroy', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
