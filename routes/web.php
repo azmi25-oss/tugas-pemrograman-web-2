@@ -10,3 +10,5 @@ Route::resource('pegawai', PegawaiController::class);
 Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
 Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegawai.create');
 Route::post('/pegawai/store', [PegawaiController::class, 'store'])->name('pegawai.store');
+Route::get('/pegawai/edit', [PegawaiController::class, 'edit'])->name('pegawai.edit');
+Route::get('/pegawai/update', [PegawaiController::class, 'update'])->name('pegawai.update');

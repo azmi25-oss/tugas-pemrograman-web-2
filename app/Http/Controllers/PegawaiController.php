@@ -11,12 +11,12 @@ class PegawaiController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    return view('pegawai.index', [
-        'title' => 'Employee Data Page',
-        'pegawai' => Pegawai::latest()->get(),
-    ]);
-}
+    {
+        return view('pegawai.index', [
+            'title' => 'Employee Data Page',
+            'pegawai' => Pegawai::latest()->get(),
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -49,9 +49,10 @@ class PegawaiController extends Controller
             'unit.required' => 'Unit Wajib Dipilih',
         ]);
 
-        pegawai::create($validated);
+        Pegawai::create($validated);
 
-        return redirect()->route('pegawai.index');
+        return to_route('pegawai.index')
+            ->with('succes', 'Data Berhasil Di Input :)');
     }
 
     /**
@@ -65,17 +66,42 @@ class PegawaiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Pegawai $pegawai)
     {
-        //
+        return view('pegawai.edit', [
+            'title' => 'Edit Data Pegawai',
+            'pegawai' => $pegawai,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Pegawai $pegawai)
     {
-        //
+        $validated = $request->validate(
+            [
+                'name' => 'required',
+                'nip' => 'required|numeric|digits:12',
+                'jabatan' => 'required',
+                'golongan' => 'required',
+                'unit' => 'required',
+            ],
+            [
+                'name.required' => 'Nama Wajib Di Input',
+                'nip.required' => 'NIP Wajib Di Input',
+                'nip.numeric' => 'NIP Wajib Berupa Angka',
+                'nip.digits' => 'NIP Wajib 12 Digit',
+                'jabatan.required' => 'Jabatan Wajib Dipilih',
+                'golongan.required' => 'Golongan Wajib Dipilih',
+                'unit.required' => 'Unit Wajib Dipilih',
+            ]
+        );
+
+        $pegawai->update($validated);
+
+        return redirect()->route('pegawai.index')
+            ->with('succes', 'Data Pegawai Berhasil Diubah');
     }
 
     /**

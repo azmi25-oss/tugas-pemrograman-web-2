@@ -103,7 +103,8 @@
                     Back To Page
                 </a>
 
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary"
+                    style="background-color: #A86B08; border-color: #A86B08; color: white;">
                     Submit
                 </button>
             </div>
